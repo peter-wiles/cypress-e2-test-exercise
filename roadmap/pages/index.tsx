@@ -204,7 +204,7 @@ export default function Roadmap({
 
         <div className="flex flex-wrap items-center justify-around max-w-4xl my-8 sm:w-full bg-white rounded-md shadow-xl h-full border border-gray-100">
           <div className="mx-8 w-full">
-            <form className="relative my-8" onSubmit={addFeature}>
+            <form className="relative my-8" data-cy="feature-form" onSubmit={addFeature}>
               <input
                 ref={featureInputRef}
                 aria-label="Suggest a feature for our roadmap"
