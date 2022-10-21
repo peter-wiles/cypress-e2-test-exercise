@@ -81,6 +81,7 @@ function Item({
 
   return (
     <div
+      data-cy="feature-list-item-added"
       className={clsx(
         'p-6 mx-8 flex items-center border-t border-l border-r',
         isFirst && 'rounded-t-md',
@@ -95,11 +96,12 @@ function Item({
         )}
         disabled={isReleased || hasVoted}
         onClick={upvote}
+        data-cy="feature-upvote-button"
       >
         {isReleased ? '✅' : '👍'}
       </button>
-      <h3 className="text font-semibold w-full text-left">{feature.title}</h3>
-      <div className="bg-gray-200 text-gray-700 text-sm rounded-xl px-2 ml-2">
+      <h3 className="text font-semibold w-full text-left" data-cy="feature-title">{feature.title}</h3>
+      <div className="bg-gray-200 text-gray-700 text-sm rounded-xl px-2 ml-2" data-cy="feature-upvote-count">
         {feature.score}
       </div>
     </div>
