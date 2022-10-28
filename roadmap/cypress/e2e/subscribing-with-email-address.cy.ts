@@ -26,4 +26,13 @@ describe("when subscribing with email address", () => {
         .should("eq", "Please fill out this field.");
     });
 
+    it("email address should contain @ symbol", () => {
+        const emailInput = cy.get('[data-cy="feature-email-address"]').type("emailgmail.com");
+        cy.get('[data-cy="feature-email-submit"]').click();
+
+        emailInput
+        .invoke("prop", "validationMessage")   
+        .should("eq", `Please include an "@" in the email address. ${emailInput.invoke('text')} is missing an "@".`);
+    });
+
 });
