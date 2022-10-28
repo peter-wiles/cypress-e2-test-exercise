@@ -248,6 +248,7 @@ export default function Roadmap({
                 placeholder="Email Address"
                 type="email"
                 autoComplete="email"
+                data-cy="feature-email-address"
                 maxLength={60}
                 required
                 className="px-3 py-3 mt-1 text-lg block w-full border border-gray-200 rounded-md text-gray-900 placeholder-gray-400 focus:outline-none focus:ring focus:ring-blue-300"
@@ -255,6 +256,7 @@ export default function Roadmap({
               <button
                 className="flex items-center justify-center absolute right-2 top-2 px-4 h-10 border border-gray-200 text-gray-900 rounded-md w-14 focus:outline-none focus:ring focus:ring-blue-300 focus:bg-gray-100"
                 type="submit"
+                data-cy="feature-email-submit"
               >
                 {isEmailLoading ? <LoadingSpinner /> : 'OK'}
               </button>
