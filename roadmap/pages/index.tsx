@@ -149,7 +149,6 @@ export default function Roadmap({
       toast.error(error)
       return
     }
-
     mutate('/api/features')
     if (featureInputRef.current) {
       featureInputRef.current.value = ''

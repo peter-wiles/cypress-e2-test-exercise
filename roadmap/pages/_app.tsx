@@ -16,7 +16,8 @@ function MyApp({ Component, pageProps }: AppProps) {
             color: '#fff',
             zIndex: 1,
           },
-          duration: 5000,
+          className: 'toast',
+          duration: 20000,
         }}
       />
     </>
