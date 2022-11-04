@@ -56,4 +56,15 @@ describe("when voting on a request", () => {
             cy.get('[data-cy="feature-upvote-count"]').should("have.text", 1);
         });
     });
+
+    it("should order the features",  () => {
+        cy.request(endpoints.clearApiEndpoint);
+        cy.request(createRequestToAddAFeature(1, 'cake 1'))
+        .request(createRequestToAddAFeature(2, 'cake 2'))
+        .request(createRequestToAddAFeature(3, 'cake 3')).then(()=>{
+        cy.visit(endpoints.localhost);
+
+        });
+        
+    });
 });
