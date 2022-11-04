@@ -1,4 +1,3 @@
-import { should } from "chai";
 import { endpoints } from "../../lib/constants"
 
 describe("when subscribing with email address", () => {
@@ -8,8 +7,7 @@ describe("when subscribing with email address", () => {
 
     it("should succesfully subscribe", () => {
         cy.request(endpoints.clearApiEndpoint);
-        const emailInput = cy.get('[data-cy="feature-email-address"]');
-        emailInput.type("email@gmail.com");
+        const emailInput = cy.get('[data-cy="feature-email-address"]').type("email@gmail.com");
         cy.get('[data-cy="feature-email-submit"]').click();
 
         emailInput.should("have.value", "");
@@ -27,12 +25,27 @@ describe("when subscribing with email address", () => {
     });
 
     it("email address should contain @ symbol", () => {
-        const emailInput = cy.get('[data-cy="feature-email-address"]').type("emailgmail.com");
+        const expected = "bobmail.com";
+        cy.request(endpoints.clearApiEndpoint);
+        const emailInput = cy.get('[data-cy="feature-email-address"]').clear()
+                                                                      .type(expected);
         cy.get('[data-cy="feature-email-submit"]').click();
-
+        
         emailInput
         .invoke("prop", "validationMessage")   
-        .should("eq", `Please include an "@" in the email address. ${emailInput.invoke('text')} is missing an "@".`);
+        .should("equal", `Please include an '@' in the email address. '${expected}' is missing an '@'.`);
+    });
+
+    it("email address should be valid after the @ symbol", () => {
+        const expected = "bobmail@";
+        cy.request(endpoints.clearApiEndpoint);
+        const emailInput = cy.get('[data-cy="feature-email-address"]').clear()
+                                                                      .type(expected);
+        cy.get('[data-cy="feature-email-submit"]').click();
+        
+        emailInput
+        .invoke("prop", "validationMessage")   
+        .should("equal", `Please enter a part following '@'. '${expected}' is incomplete.`);
     });
 
 });

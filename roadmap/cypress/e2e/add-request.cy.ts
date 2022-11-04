@@ -1,4 +1,3 @@
-import { should } from "chai";
 import {endpoints} from "../../lib/constants"
 
 describe("add request", () => {
