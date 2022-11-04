@@ -1,6 +1,6 @@
 import { endpoints } from "../../lib/constants";
 
-const requestAddFeature = (id:any, featureTitle:any) => {
+const createRequestToAddAFeature = (id:any, featureTitle:any) => {
     return {
         method: "POST",
         url: endpoints.createApiEndpoint,
@@ -19,7 +19,7 @@ describe("when voting on a request", () => {
     const featureTitle = "cake";
     const id = 1;
     cy.request(endpoints.clearApiEndpoint);
-    cy.request(requestAddFeature(id, featureTitle)).then(() => {
+    cy.request(createRequestToAddAFeature(id, featureTitle)).then(() => {
         cy.visit(endpoints.localhost);
         cy.get('[data-cy="feature-title"]').should("have.text", featureTitle);
         cy.get('[data-cy="feature-upvote-count"]').should("have.text", id);
