@@ -1,4 +1,5 @@
 import {endpoints} from "../../lib/constants"
+import {upvoteButton,featureInputBox} from "../e2e/helper-methods"
 
 describe("add request", () => {
   it("should go to the homepage", () => {
@@ -17,8 +18,8 @@ describe("add request", () => {
     featureListItem.should("not.be.null");
     featureListItem.should("have.text", input);
 
-    const upvoteButton = cy.get('[data-cy="feature-upvote-button"]');
-    upvoteButton.should("have.text", "👍");
+    
+    upvoteButton().should("have.text", "👍");
 
     const upvoteCount = cy.get('[data-cy="feature-upvote-count"]');
     upvoteCount.should("have.text", "1");

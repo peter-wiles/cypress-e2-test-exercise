@@ -1,4 +1,5 @@
 import { endpoints } from "../../lib/constants";
+import {upvoteButton} from "../e2e/helper-methods"
 
 const createRequestToAddAFeature = (featureTitle: any) => {
     return {
@@ -29,6 +30,8 @@ const createRequestToVote = (id: any, featureTitle: any, ip: string = "192.168.0
     }
 }
 
+
+
 describe("voting", () => {
     beforeEach(() => {
         clearDatabase();
@@ -41,11 +44,11 @@ describe("voting", () => {
                 cy.visit(endpoints.localhost);
                 getFeatureTitles().should("have.text", featureTitle);
                 getUpvoteCounts().should("have.text", 1);
-
-                getFeatureUpvoteButton().click();
+                  
+                upvoteButton().click();
 
                 getUpvoteCounts().should("have.text", 2);
-                getFeatureUpvoteButton().should("have.class", "bg-green-100")
+                upvoteButton().should("have.class", "bg-green-100")
             });
         });
     });
@@ -115,10 +118,6 @@ function assertFirstFeatureHasVotes(votes: number) {
 
 function assertFirstFeatureHasTitle(title: string) {
     getFeatureTitles().first().should("have.text", title);
-}
-
-function getFeatureUpvoteButton() {
-    return cy.get('[data-cy="feature-upvote-button"]');
 }
 
 function getUpvoteCounts() {
