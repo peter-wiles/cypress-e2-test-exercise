@@ -3,4 +3,5 @@ export const endpoints = {
     clearApiEndpoint: "http://localhost:3000/api/clear",
     createApiEndpoint: "http://localhost:3000/api/create",
     voteApiEndpoint: "http://localhost:3000/api/vote",
+    featuresApiEndpoint: "http://localhost:3000/api/features",
 }
